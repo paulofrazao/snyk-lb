@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-lb-gitops-frontend
+  namespace: k8s-lb
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - snyk.geshi.ca
+    secretName: snyk-geshi-ca-crt
+  rules:
+  - host: snyk.geshi.ca
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: k8s-lb-gitops-frontend
+            port:
+              number: 80

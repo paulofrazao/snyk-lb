@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-lb-gitops-frontend
+  namespace: k8s-lb
+  labels:
+    app.kubernetes.io/name: k8s-lb-gitops
+    app.kubernetes.io/component: k8s-lb-gitops-frontend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: k8s-lb-gitops
+      app.kubernetes.io/component: k8s-lb-gitops-frontend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: k8s-lb-gitops
+        app.kubernetes.io/component: k8s-lb-gitops-frontend
+    spec:
+      containers:
+      - name: k8s-lb
+        #image: paulofrazao/weaveworks-gitops:0.1
+        #image: paulofrazao/launchpad:latest
+        #image: paulofrazao/k8s-lb-scaling:yellow
+        image: paulofrazao/k8s-lb-scaling:red
+        #image: paulofrazao/suse-demo-yellow:0.1.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+        ports:
+        - containerPort: 80
