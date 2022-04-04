@@ -72,8 +72,8 @@ metadata:
 spec:
   tls:
   - hosts:
-    - snyk.geshi.ca
-    secretName: snyk-geshi-ca-crt
+    - datadog.geshi.ca
+    secretName: datadog-geshi-ca-crt
   rules:
   - host: snyk.geshi.ca
     http:
