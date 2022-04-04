@@ -75,7 +75,7 @@ spec:
     - datadog.geshi.ca
     secretName: datadog-geshi-ca-crt
   rules:
-  - host: snyk.geshi.ca
+  - host: datadog.geshi.ca
     http:
       paths:
       - path: /
