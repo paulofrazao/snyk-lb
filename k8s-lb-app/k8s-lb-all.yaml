@@ -16,7 +16,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: k8s-lb-gitops
       app.kubernetes.io/component: k8s-lb-gitops-frontend
-  replicas: 0
+  replicas: 3
   template:
     metadata:
       labels:
